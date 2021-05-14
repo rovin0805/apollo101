@@ -12,6 +12,10 @@ const GET_MOVIE = gql`
       language
       rating
     }
+    suggestions(id: $id) {
+      id
+      medium_cover_image
+    }
   }
 `;
 
@@ -66,13 +70,13 @@ const Detail = () => {
         {!loading && data.movie && (
           <>
             <Subtitle>
-              {data.movie.language} · {data.movie.rating}
+              {data?.movie?.language} · {data?.movie?.rating}
             </Subtitle>
-            <Description>{data.movie.description_intro}</Description>
+            <Description>{data?.movie?.description_intro}</Description>
           </>
         )}
       </Column>
-      <Poster bg={data && data.movie ? data.movie.medium_cover_image : ""} />
+      <Poster bg={data?.movie?.medium_cover_image} />
     </Container>
   );
 };
